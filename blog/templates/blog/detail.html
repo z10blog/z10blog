@@ -1,0 +1,30 @@
+{% extends "blog/base.html" %}
+{% block title %}
+    {% if articles %}
+        {{ articles.title }} | {{ SITE_NAME }}
+    {% endif %}
+{% endblock title %}
+{% block content %}
+<div class="col-sm-8 blog-main">
+    {% if articles %}
+        <div class="blog-post">
+            <h1>{{ articles.title }}</h1>
+        {{ articles.pub_date | date:"M j Y" }} by {{ articles.author}}
+        <a href="{% url 'blog:category' articles.category_id %}">{{ articles.category }}</a>
+        {{ articles.views }}
+        <p>{{ articles.content }}</p>
+        {% if articles.tags.all %}
+            {% for tag in articles.tags.all %}
+                <a href="{% url 'blog:tag' tag.id %}">{{ tag }}</a>
+            {% endfor %}
+        {% endif %}
+        </div>
+    {% endif %}
+</div>
+
+<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+        <div class="sidebar-module sidebar-module-inset">
+            <h4>About</h4>
+        </div>
+</div>
+{% endblock content %}

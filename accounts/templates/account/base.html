@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}
+        site title
+    {% endblock title %}</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+</head>
+<body>
+<div class="blog-masthead"><!-- 网站顶部 -->
+    <div class="container">
+        {% block header %}
+        <nav class="blog-nav">
+        <a class="blog-nav-item" href="{% url 'blog:index' %}">首页</a>
+        <a class="blog-nav-item" href="">日志</a>
+        <a class="blog-nav-item" href="">关于</a>
+        </nav>
+    {% endblock header %}
+    </div>
+</div> <!-- end class="blog-masthead" -->
+<div class="container-fluid blog-header-bg">
+<div class="blog-header">
+    {% block blog-header %}
+    <h1 class="blog-title">{{ SITE_NAME }}</h1>
+    <p class="lead blog-description">{{ SITE_BLOG_DES }}</p>
+    {% endblock blog-header %}
+
+</div> <!-- end class="blog-header" -->
+</div>
+<div class="container">
+<div class="row">
+    {% block content %}
+
+{% endblock content %}
+</div>
+</div>
+<div class="blog-footer">
+{% block footer %}
+<p class="copyright">&copy; 2016 <a href="{{ SITE_URL }}">z10.xin</a> 站点基于<a href="https://djangoproject.com">Django</a>框架.</p>
+{% endblock footer %}
+</div>
+</body>
+</html>
